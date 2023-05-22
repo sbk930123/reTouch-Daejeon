@@ -39,8 +39,8 @@ const Img = ({setAverlay}) => {
       ref.current.forEach((item, index) => {
 
         // 질문
-        //console.log(ref.current); -> 이건 도대체 뭘 ㄹ의미하는지 모르겠습니다. 어레이가 나오는데 안에는 다 null값... ㅜㅜ
-        // console.log(ref.current.item) 이건 undefined가 7번 찍힙니다. ㅜㅜ 즉 안에가 아직 값이 안 정해진 거인데
+        //ref.current; -> 이건 도대체 뭘 ㄹ의미하는지 모르겠습니다. 어레이가 나오는데 안에는 다 null값... ㅜㅜ
+        // ref.current.item 이건 undefined가 7번 찍힙니다. ㅜㅜ 즉 안에가 아직 값이 안 정해진 거인데
         // 왜 언디파인이 뜨는지 모르겠습니다.
 
         if (item.checked) {
@@ -51,7 +51,6 @@ const Img = ({setAverlay}) => {
 
 
           // 질문
-          // console.log(JSON.stringify(item));
           // const key = `image_${index}`; // 이미지를 식별하는 고유한 키 생성
           // localStorage.setItem(key, JSON.stringify(item)); // key와 체크된 이미지를 쌍으로 저장 -> 저 세개는 지피티 돌린 것인데 
           // 왜 작동을 안 한 건지 모르겠습니다.

@@ -87,7 +87,6 @@ const Corona = () => {
 
     fetchCorona();
     fetchDJCorona();
-    console.log(djConfirm);
 
     const interval = setInterval(() => {
       fetchCorona();
@@ -114,7 +113,6 @@ const Corona = () => {
     config: { tension: 500 },
   });
 
-  console.log(djConfirm);
 
   return (
     <div>

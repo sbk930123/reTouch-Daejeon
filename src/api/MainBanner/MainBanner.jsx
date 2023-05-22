@@ -1,11 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useSpring, animated } from "react-spring";
-import $ from "jquery";
 import "./MainBanner.css";
-import { Route, Routes, useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass, faBars } from "@fortawesome/free-solid-svg-icons";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+import navData from './MainBannerData.json'
 
 const MainBanner = () => {
   const props = useSpring({
@@ -13,6 +13,16 @@ const MainBanner = () => {
     to: { number: 1446072 },
     config: { tension: 100 },
   });
+
+  // MainNavList Array and Object 
+  const [isOpen, setIsOpen] = useState(null);
+  const handleHover = (i) => {
+    setIsOpen(i);
+  };
+
+  const handleHoverLeave = () => {
+    setIsOpen(null);
+  };
 
   // 미세먼지 10 정하는 스테이트
   const [airQuality, setAirQuality] = useState(null);
@@ -127,20 +137,6 @@ const MainBanner = () => {
     weath_condition = "맑음";
   }
 
-  const mainItems = document.querySelectorAll(".gnb-main-item");
-
-  mainItems.forEach((item) => {
-    item.addEventListener("mouseover", () => {
-      $(item).find(".sub").stop().slideDown(500);
-      $(item).children("a").addClass("active");
-    });
-
-    item.addEventListener("mouseout", () => {
-      $(item).find(".sub").stop().slideUp(500);
-      $(item).children("a").removeClass("active");
-    });
-  });
-
   return (
     <div>
       <header className="global-header">
@@ -157,227 +153,35 @@ const MainBanner = () => {
 
           <nav>
             <ul className="gnb-main-list">
-              <li className="gnb-main-item">
-                <a href="/">정보공개</a>
-                <ul className="sub">
-                  <li>
-                    <a href="/">정보공개 및 제도안내</a>
-                  </li>
-                  <li>
-                    <a href="/">사전정보공표</a>
-                  </li>
-                  <li>
-                    <a href="/">공공데이터개발 이용안내</a>
-                  </li>
-                  <li>
-                    <a href="/">원문정보 정보목록공개</a>
-                  </li>
-                  <li>
-                    <a href="/">위원회 운영정보</a>
-                  </li>
-                  <li>
-                    <a href="/">제정정보공개</a>
-                  </li>
-                  <li>
-                    <a href="/">계약정보공개</a>
-                  </li>
-                  <li>
-                    <a href="/">대전시 조직정보 공개</a>
-                  </li>
-                  <li>
-                    <a href="/">정책설명계</a>
-                  </li>
-                  <li>
-                    <a href="/">감사결과안내</a>
-                  </li>
-                </ul>
-              </li>
-
-              <li className="gnb-main-item">
-                <a href="/">참여마당</a>
-                <ul className="sub">
-                  <li>
-                    <a href="/">시정참여</a>
-                  </li>
-                  <li>
-                    <a href="/">일반참여/자유게시판</a>
-                  </li>
-                  <li>
-                    <a href="/">시민단체</a>
-                  </li>
-                  <li>
-                    <a href="/">기부문화</a>
-                  </li>
-                  <li>
-                    <a href="/">문자안내</a>
-                  </li>
-                </ul>
-              </li>
-
-              <li className="gnb-main-item">
-                <a href="/">전자민원</a>
-                <ul className="sub">
-                  <li>
-                    <a href="/">대전시에 바란다</a>
-                  </li>
-                  <li>
-                    <a href="/">나의 민원</a>
-                  </li>
-                  <li>
-                    <a href="/">버스전용차로 민원</a>
-                  </li>
-                  <li>
-                    <a href="/">여권안내/교부/보관/반납</a>
-                  </li>
-                  <li>
-                    <a href="/">원스톱 민원 안내</a>
-                  </li>
-                  <li>
-                    <a href="/">민원신고센터</a>
-                  </li>
-                  <li>
-                    <a href="/">환경신문고</a>
-                  </li>
-                  <li>
-                    <a href="/">안전신문고</a>
-                  </li>
-                  <li>
-                    <a href="/">비리 신고</a>
-                  </li>
-                  <li>
-                    <a href="/">부패공익신고</a>
-                  </li>
-                  <li>
-                    <a href="/">적극행정/알림소식</a>
-                  </li>
-                </ul>
-              </li>
-
-              <li className="gnb-main-item">
-                <a href="/">행정정보</a>
-                <ul className="sub">
-                  <li>
-                    <a href="/">Story 대전</a>
-                  </li>
-                  <li>
-                    <a href="/">시정뉴스/자료실</a>
-                  </li>
-                  <li>
-                    <a href="/">법무행정정보</a>
-                  </li>
-                  <li>
-                    <a href="/">예산/재정</a>
-                  </li>
-                  <li>
-                    <a href="/">도시주택정보</a>
-                  </li>
-                  <li>
-                    <a href="/">자치경찰위원회</a>
-                  </li>
-                </ul>
-              </li>
-
-              <li className="gnb-main-item">
-                <a href="/">열린경제</a>
-                <ul className="sub">
-                  <li>
-                    <a href="/">과학산업/대덕연구</a>
-                  </li>
-                  <li>
-                    <a href="/">기업지원</a>
-                  </li>
-                  <li>
-                    <a href="/">지역인재 의무채용</a>
-                  </li>
-                  <li>
-                    <a href="/">공개채용정보</a>
-                  </li>
-                  <li>
-                    <a href="/">대전일자리지원센터</a>
-                  </li>
-                  <li>
-                    <a href="/">청년정책</a>
-                  </li>
-                  <li>
-                    <a href="/">관련기관안내</a>
-                  </li>
-                  <li>
-                    <a href="/">부동산정보</a>
-                  </li>
-                  <li>
-                    <a href="/">소비자정보</a>
-                  </li>
-                  <li>
-                    <a href="/">물가정보</a>
-                  </li>
-                  <li>
-                    <a href="/">경제지표</a>
-                  </li>
-                  <li>
-                    <a href="/">협동조합이란?</a>
-                  </li>
-                </ul>
-              </li>
-
-              <li className="gnb-main-item">
-                <a href="/">생활정보</a>
-                <ul className="sub">
-                  <li>
-                    <a href="/">복지</a>
-                  </li>
-                  <li>
-                    <a href="/">교육상담</a>
-                  </li>
-                  <li>
-                    <a href="/">성인지정책</a>
-                  </li>
-                  <li>
-                    <a href="/">건강과 의료</a>
-                  </li>
-                  <li>
-                    <a href="/">3대 하천 정보</a>
-                  </li>
-                  <li>
-                    <a href="/">환경정보</a>
-                  </li>
-                  <li>
-                    <a href="/">재난/안전</a>
-                  </li>
-                  <li>
-                    <a href="/">대전시설이용/반려견</a>
-                  </li>
-                  <li>
-                    <a href="/">바로가기</a>
-                  </li>
-                </ul>
-              </li>
-
-              <li className="gnb-main-item">
-                <a href="/">대전소개</a>
-                <ul className="sub">
-                  <li>
-                    <a href="/">대전의 상징들</a>
-                  </li>
-                  <li>
-                    <a href="/">대전의 현황</a>
-                  </li>
-                  <li>
-                    <a href="/">대전의 통계</a>
-                  </li>
-                  <li>
-                    <a href="/">시청안내</a>
-                  </li>
-                  <li>
-                    <a href="/">사이버 역사관</a>
-                  </li>
-                  <li>
-                    <a href="/">국제협력</a>
-                  </li>
-                  <li>
-                    <a href="/">원도심 이야기</a>
-                  </li>
-                </ul>
-              </li>
+              {
+                navData.map((a, i) => {
+                  return (
+                    <li className="gnb-main-item" key={i}>
+                      <a
+                       href="/"
+                       onMouseEnter={() => handleHover(i)}
+                       onMouseLeave={handleHoverLeave}
+                      >{a.navTitle}</a>
+                      {
+                       i === isOpen && (
+                        <ul className={"sub " + (i === isOpen ? "drop" : "")}
+                            onMouseEnter={() => handleHover(i)}
+                            onMouseLeave={handleHoverLeave}
+                        >
+                        {a.navItem.map((a, i) => {
+                          return (
+                            <li key={i}>
+                              <a href="/">{a}</a>
+                            </li>
+                          )
+                        })}
+                      </ul>
+                       )
+                      }
+                    </li>
+                  )
+                }) 
+              }
             </ul>
           </nav>
 
@@ -429,7 +233,6 @@ const MainBanner = () => {
             <h1 className="deajeon">
               대전광역시
               <span className="count__number">
-                {console.log(props.number)}
                 <animated.span>
                   {props.number.interpolate((number) => number.toFixed())}
                 </animated.span>

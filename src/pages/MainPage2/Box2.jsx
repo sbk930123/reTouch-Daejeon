@@ -2,7 +2,6 @@ import React from "react";
 import "./Box2.css";
 
 const mayorTitle = ["대전시장 이장우", "이장우의 공약사업", "소통하는 이장우"];
-const titleList = mayorTitle.map((title, index) => <p key={index}>{title}</p>);
 
 const Box2 = () => {
   return (

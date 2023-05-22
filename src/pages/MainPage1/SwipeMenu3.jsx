@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./SwipeMenu3.css";
 import Img from "./Img";
 
@@ -9,10 +9,6 @@ const SwipeMenu3 = () => {
   const [saveChecked, setSaveChecked] = useState(new_saveChecked);
 
   // 바뀔 로컬스토리지 너비를 반영할 스테이트이고 기본값은 널이다. 이걸 이용해서 메뉴박스2의 너비를 결정할 것이다.
-  const [saveCheckedLength, setSaveCheckedLength] = useState(null);
-
-  // 이 렝스라는 변수의 목표는 앞으로 선택될 메뉴 갯수에 따라 너비값을 결정하기 위해서 만든 것이다.
-  const [widthLength, setWidthLength] = useState(null);
 
   // 이건 눌렀을 때 이동하는 정도를 정하기 위해서이다.
   const [currentImgIndex, setCurrentImgIndex] = useState(0);
@@ -30,8 +26,6 @@ const SwipeMenu3 = () => {
     if (new_saveChecked.length > 8) {
       // 바뀐 로컬스토리지 어레이 반영
       setSaveChecked(new_saveChecked);
-      // 바뀐 로컬스토리지 어레이 갯수 반영
-      setSaveCheckedLength(new_saveChecked.length);
       // 스타일 변경도 반영
       setStyle({
         transform: `translateX(${1 - currentImgIndex}%)`,
@@ -40,8 +34,6 @@ const SwipeMenu3 = () => {
     } else if (new_saveChecked.length <= 7) {
       // 바뀐 로컬스토리지 어레이 반영
       setSaveChecked(new_saveChecked);
-      // 바뀐 로컬스토리지 어레이 갯수 반영
-      setSaveCheckedLength(new_saveChecked.length);
       // 스타일 변경도 반영
       setStyle2({
         display: `flex`,
@@ -62,7 +54,6 @@ const SwipeMenu3 = () => {
     setAverlay(true);
   };
 
-  console.log(currentImgIndex);
 
   // 버튼 관련 함수이다.
   const nextSlide = () => {
@@ -174,7 +165,7 @@ const SwipeMenu3 = () => {
 
   //  이건 로컬스토리지 값이 7개 이하일 때의 자식 컴포넌트
 
-  const Seven_under_Menu = () => {
+  const SevenUnderMenu = () => {
     // 여기는 7개 이하일 때 스타일 수정을 해줘야 한다.
     return (
       <div>
@@ -194,7 +185,7 @@ const SwipeMenu3 = () => {
             <div className="menu-box1" style={style2}>
               <div style={style} className="menu-box2">
                 {saveChecked.map((item, i) => (
-                  <div className="menu-img-box">
+                  <div className="menu-img-box" key={i}>
                     <img
                       key={i}
                       className="menu-img"
@@ -222,7 +213,7 @@ const SwipeMenu3 = () => {
   };
 
   // 선택한 메뉴가 8개 이상 나왔을 때의 자식 컴포넌트 구성
-  const Eight_over_Menu = () => {
+  const EightOverMenu = () => {
     return (
       <div>
         <div className="wrapper">
@@ -241,7 +232,7 @@ const SwipeMenu3 = () => {
             <div className="menu-box1" style={style2}>
               <div style={style} className="menu-box2">
                 {saveChecked.map((item, i) => (
-                  <div className="menu-img-box">
+                  <div className="menu-img-box" key={i}>
                     <img
                       key={i}
                       className="menu-img"
@@ -274,9 +265,9 @@ const SwipeMenu3 = () => {
       {localStorage.getItem("saveChecked") == null ? (
         <NullMenu />
       ) : new_saveChecked.length < 8 ? (
-        <Seven_under_Menu />
+        <SevenUnderMenu />
       ) : (
-        <Eight_over_Menu />
+        <EightOverMenu />
       )}
 
       {/* 여기는 버튼을 클릭했을 때 선택할 메뉴 모음집을 보여줄지 말지를 결정하는 것이다. */}

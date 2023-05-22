@@ -34,19 +34,16 @@ const Login = () => {
     const id = localStorage.getItem("idSave"); // localStorage에서 "idSave" 값을 가져와 id 변수에 할당한다.
     if (id) {
       setIdSave(JSON.parse(id)); // idSave 상태를 가져온 id 값으로 변경한다.
-      console.log(id);
     }
   }, []);
 
   useEffect(() => {
     localStorage.setItem("idSave", JSON.stringify(idSave)); // idSave 상태가 변경될 때마다 localStorage에 "idSave" 키로 idSave 값을 저장한다.
-    console.log(idSave);
   }, [idSave]);
 
   const handleIdChange = (e) => {
     // input 요소의 값이 변경될 때마다 실행되는 함수
     setIdValue(e.target.value); // idvalue 상태를 변경한다.
-    // console.log(idvalue);
   };
 
   const handlePwChange = (e) => {

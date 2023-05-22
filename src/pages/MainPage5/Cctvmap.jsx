@@ -24,7 +24,6 @@ function Cctvmap() {
     
     //스크립트 읽기 완료 후 카카오맵 설정
     my_script.then(() => { 
-      console.log('script loaded!!!');  
       const kakao = window['kakao']; 
       kakao.maps.load(() => {  
         const mapContainer = document.getElementById('map'); 

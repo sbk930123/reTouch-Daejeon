@@ -1,15 +1,10 @@
 import React from "react";
 import "./BulletinBoard.css";
-import { useNavigate, Link } from "react-router-dom";
-import BulletinBoardJunche from "./BulletinBoardJunche";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 
 const BulletinBoard = () => {
-  const navigate1 = useNavigate();
-  const goBulletinBoard = () => {
-    navigate1("./goBulletinBoardJunche");
-  };
   return (
     <div className="BulletinBoard-wrapper">
       <div className="BulletinBoard-box-wrap">

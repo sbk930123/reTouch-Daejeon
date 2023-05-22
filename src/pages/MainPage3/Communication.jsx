@@ -40,8 +40,6 @@ const JuyoHengSA = () => {
               navigation
               pagination={{ clickable: true }}
               scrollbar={{ draggable: true }}
-              onSwiper={(swiper) => console.log(swiper)}
-              onSlideChange={() => console.log("slide change")}
             >
               <SwiperSlide>
                 <img src="/img/북토크.png" alt="북토크 행사 배너" />

@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import "./PublicAnnouncement.css";
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
+import { Navigation, Pagination, A11y } from "swiper";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -13,7 +13,7 @@ import "swiper/css/scrollbar";
 
 const Gonggo = () => {
   const gonggolist = ["시정소식", "시험정도", "행사안내", "고시", "공고"];
-  const [gonggolist1, setGonggolist1] = useState(gonggolist);
+  const gonggolist1 = useState(gonggolist);
 
   return (
     <div>
@@ -48,8 +48,6 @@ const Gonggo = () => {
             navigation
             pagination={{ clickable: true }}
             // scrollbar={{ draggable: true }}
-            onSwiper={(swiper) => console.log(swiper)}
-            onSlideChange={() => console.log("slide change")}
           >
             <SwiperSlide>
               <div className="PublicAnnouncement-box1">
